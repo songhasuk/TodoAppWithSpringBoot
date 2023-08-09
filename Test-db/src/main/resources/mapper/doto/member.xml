@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.dao.MemberDAO">
+  <insert id="insertMember" parameterType="com.example.demo.dto.UsersDTO">
+  		<selectKey keyProperty="id" resultType="int" order="BEFORE">
+			select 
+				USERS_SEQ.nextval user_id
+			from dual
+		</selectKey>
+    INSERT INTO USERS (USER_ID, USERNAME, PASSWORD, ROLES)
+    VALUES (#{id}, #{username}, #{password}, #{roles})
+
+  </insert>
+  
+  
+  <select id="selectUser"  resultType="com.example.demo.dto.UsersDTO">
+  	SELECT *
+  	FROM USERS
+  	WHERE USERNAME = #{username}
+  </select>
+
+
+  
+
+  
+</mapper>
+
